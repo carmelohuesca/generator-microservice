@@ -10,7 +10,6 @@ const corsFilter = require('./cors');
 const router = require('../routes');
 const db = require('./db');
 const Log = require('./log');
-const cert = FS.readFileSync('public/cert/server.key');
 
 const app = express();
 const status = require('./status');
@@ -20,35 +19,43 @@ require('./socket')(app);
 
 const init = () => {
 
-    // CORS headers
-    app.use(corsFilter);
+  // CORS headers
+  app.use(corsFilter);
 
-    // PARSER
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+  // PARSER
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
-    // ENVIRONMENT
-    if (env.NODE_ENV !== 'production') {
-        app.use(morgan('common', {
-            stream: FS.createWriteStream('./logs.log', { flags: 'a' })
-        }));
-        app.use(morgan('dev'));
-    }
+  // ENVIRONMENT
+  if (env.NODE_ENV !== 'production') {
+    app.use(morgan('common', {
+      stream: FS.createWriteStream('./logs.log', {
+        flags: 'a'
+      })
+    }));
+    app.use(morgan('dev'));
+  }
 
-    // STATIC SERVER
-    app.use(express.static('public'));
+  // STATIC SERVER
+  app.use(express.static('public'));
 
-    // ROUTER
-    app.use(router);
+  // ROUTER
+  app.use(router);
 
-    // LISTENER
-    app.listen(env.PORT, status);
+  // LISTENER
+  app.listen(env.PORT, status);
 
-    return app;
+  return app;
 };
 
 const closeServer = () => {
-    app.close();
+  app.close();
 };
 
-module.exports = { init, app, closeServer };
+module.exports = {
+  init,
+  app,
+  closeServer
+};

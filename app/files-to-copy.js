@@ -35,8 +35,6 @@ class FilesToCopy {
             .copyFile('SERVER_SOCKET', 'src/server/socket.js')
             .copyFile('SERVER_STATUS', 'src/server/status.js')
 
-            .copyFile('PUBLIC_CERT_KEY', 'public/cert/server.key')
-
             .copyFile('ROUTES_INDEX', 'src/routes/index.js')
             .copyFile('ROUTES_ROUTER', 'src/routes/router.js')
             .copyFile('ROUTES_BASE_MODEL', 'src/routes/base.model.js')
