@@ -1,0 +1,21 @@
+{
+  "name": "generator-microservice",
+  "version": "1.0.0",
+  "description": "Generador de Microservicios en Mongo",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Generator",
+    "microservices",
+    "mongo",
+    "nodejs"
+  ],
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "yeoman-generator": "^3.1.1"
+  },
+  "author": "Carmelo Huesca <carmelohuesca@gmail.com>",
+  "license": "ISC"
+}
